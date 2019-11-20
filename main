@@ -1,0 +1,39 @@
+#include<stdio.h>
+#include<math.h>
+int wei(int a)
+{
+	int i = 0;
+	do
+	{
+		i++;
+		a = a / 10;
+	} while (a != 0);
+	return i;
+}
+int quwei(int a, int b)
+{
+	for (int i = 1; i < b; i++)
+	{
+		a = a / 10;
+	}
+	a = a % 10;
+	return a;
+}
+int ni(int a)
+{
+	int mid = 0, w = wei(a);
+	for (int i = 1; i <= w / 2; i++)
+	{
+		mid = mid + quwei(a, i) * pow(10, w - i);
+		mid = mid + quwei(a, w - i + 1) * pow(10, i - 1);
+	}
+	if (w % 2 != 0)
+	{
+		mid = mid + quwei(a, w / 2 + 1) * pow(10, w / 2);
+	}
+	return (int)mid;
+}
+int main()
+{
+	printf("%d", ni(1112345));
+}
